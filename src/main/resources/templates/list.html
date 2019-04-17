@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/css/vendors/buttons.dataTables.min.css}" rel="stylesheet">
+	<link th:href="@{/css/app.css}" rel="stylesheet">
+	<title>Users</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row"><br></div>
+		<h4 th:text="#{lbl.user.list}"></h4>
+		
+		<table class="table table-borderedless table-hover users-list">
+			<thead>
+				<th th:text="#{lbl.name}"></th>
+				<th th:text="#{lbl.email}"></th>
+				<th th:text="#{lbl.address}"></th>
+				<th th:text="#{lbl.city}"></th>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${users}">
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.email}"></td>
+					<td th:text="${item.address.street}"></td>
+					<td th:text="${item.address.city +'/' + item.address.state}"></td> 
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/vendors/jszip.min.js}"></script>
+	<script th:src="@{/js/vendors/datatables.min.js}"></script>
+	<script th:src="@{/js/vendors/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/js/vendors/buttons.html5.min.js}"></script>
+	<script th:src="@{/js/vendors/buttons.flash.min.js}"></script>
+	<script th:src="@{/js/vendors/buttons.print.min.js}"></script>
+	<script th:src="@{/js/app/config/datatable.configuration.js}"></script>
+	<script th:src="@{/js/app/list.js}"></script>
+</body>
+</html>
