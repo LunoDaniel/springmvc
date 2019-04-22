@@ -19,9 +19,7 @@ public class UserConverter implements Converter<User, UserDTO> {
 	public <T, S> List<T> convertTotList(List<S> all){
 		List<T> dtoList = new ArrayList<>();
 		
-		all.forEach(item -> {
-			dtoList.add(convert(item, item.getClass()));
-		});
+		all.forEach(item -> dtoList.add(convert(item, item.getClass())));
 		
 		return dtoList;
 	}

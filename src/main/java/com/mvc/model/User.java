@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 public class User {
@@ -17,6 +20,7 @@ public class User {
 	private String password;
 	private Address address;
 	private Boolean checked;
+	private String cpf;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,6 +30,17 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	@CPF
+	@NotEmpty
+	@Column(name="cpf")
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	@Email

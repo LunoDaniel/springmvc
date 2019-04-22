@@ -1,38 +1,28 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" rel="stylesheet">
+	<link th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}" rel="stylesheet">
 	<link th:href="@{/css/vendors/buttons.dataTables.min.css}" rel="stylesheet">
-	<link th:href="@{/css/app.css}" rel="stylesheet">
-	<title>Users</title>
 </head>
 <body>
-	<div class="container">
-		<div class="row"><br></div>
-		<h4 th:text="#{lbl.user.list}"></h4>
-		
-		<table class="table table-borderedless table-hover users-list">
-			<thead>
-				<th th:text="#{lbl.name}"></th>
-				<th th:text="#{lbl.email}"></th>
-				<th th:text="#{lbl.address}"></th>
-				<th th:text="#{lbl.city}"></th>
-			</thead>
-			<tbody>
-				<tr th:each="item : ${users}">
-					<td th:text="${item.name}"></td>
-					<td th:text="${item.email}"></td>
-					<td th:text="${item.address.street}"></td>
-					<td th:text="${item.address.city +'/' + item.address.state}"></td> 
-				</tr>
-			</tbody>
-		</table>
+	<div layout:fragment="content-list" class="container"></div>
+	
+	<div layout:fragment="footer-list">
+	 	<footer> <br><hr>
+	 		<div class="footer-copyright text-center py-3">© 2019 Copyright </div>
+		</footer>
 	</div>
-	<script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
+ 
+    <script th:src="@{/webjars/jquery/3.3.1/jquery.min.js}"></script>
 	<script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/vendors/jquery.mask.min.js}"></script>
+	<script th:src="@{/js/utils.js}"></script>
 	<script th:src="@{/js/vendors/jszip.min.js}"></script>
 	<script th:src="@{/js/vendors/datatables.min.js}"></script>
 	<script th:src="@{/js/vendors/dataTables.buttons.min.js}"></script>
@@ -40,6 +30,7 @@
 	<script th:src="@{/js/vendors/buttons.flash.min.js}"></script>
 	<script th:src="@{/js/vendors/buttons.print.min.js}"></script>
 	<script th:src="@{/js/app/config/datatable.configuration.js}"></script>
-	<script th:src="@{/js/app/list.js}"></script>
+	
+	<th:block layout:fragment="script"></th:block>
 </body>
 </html>

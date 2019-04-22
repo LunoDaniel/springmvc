@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mvc.exceptions.BusinessException;
+import com.mvc.exceptions.CpfException;
 import com.mvc.model.dto.UserDTO;
 import com.mvc.service.UsersService;
 import com.mvc.validator.UserValidator;
@@ -24,9 +26,11 @@ public class UsersController {
 	@Autowired private UserValidator validator;
 	@Autowired private UsersService service;
 	
-	private final static String PATH = "index";
-	private final static String LIST = "list";
-	private final static String SUCCESS = "success";
+	private static final String PATH = "/users/form";
+	private static final String LIST = "/users/list";
+	private static final String SUCCESS = "success";
+	private static final String ERROR = "error";
+	private static final String CPF_INVALID = "cpfInvalid";
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -48,19 +52,27 @@ public class UsersController {
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public ModelAndView saveUser(@ModelAttribute("user") @Valid UserDTO user,
-			BindingResult result, Model model) {
+			BindingResult result, Model model) throws BusinessException {
 		
 		if(result.hasErrors()) {
 			return new ModelAndView(PATH);
 		}
-		service.saveUser(user);
-		emptyModelObject(model);
-		model.addAttribute(SUCCESS, true);
+		
+		try {
+			service.saveUser(user);
+			emptyModelObject(model);
+			model.addAttribute(SUCCESS, true);
+		} catch(CpfException except) {
+			model.addAttribute(ERROR, true);
+			model.addAttribute(CPF_INVALID, true);
+		} catch (BusinessException except) {
+			model.addAttribute(ERROR, true);
+		}
+		
 		return new ModelAndView(PATH);
 	} 
 	
 	private void emptyModelObject(Model model) {
 		model.addAttribute("user", new UserDTO());
 	}
-	
 }

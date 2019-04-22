@@ -11,7 +11,7 @@ import com.mvc.model.dto.UserDTO;
 public class UserValidator implements Validator {
 
 	private UserDTO user = new UserDTO();
-	
+	private static final String REQUIRED_FIELD= "err.required";
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return UserDTO.class.equals(clazz);
@@ -22,13 +22,14 @@ public class UserValidator implements Validator {
 		if(target instanceof UserDTO) {
 			user = (UserDTO) target;
 			
-			ValidationUtils.rejectIfEmpty(errors, "password", "err.required");
-			ValidationUtils.rejectIfEmpty(errors, "email", "err.required");
-			ValidationUtils.rejectIfEmpty(errors, "name", "err.required");
-			ValidationUtils.rejectIfEmpty(errors, "address.street", "err.required");
-			ValidationUtils.rejectIfEmpty(errors, "address.state", "err.required");
-			ValidationUtils.rejectIfEmpty(errors, "address.city", "err.required");
-			ValidationUtils.rejectIfEmpty(errors, "address.zipCode", "err.required");
+			ValidationUtils.rejectIfEmpty(errors, "password", REQUIRED_FIELD);
+			ValidationUtils.rejectIfEmpty(errors, "email", REQUIRED_FIELD);
+			ValidationUtils.rejectIfEmpty(errors, "name", REQUIRED_FIELD);
+			ValidationUtils.rejectIfEmpty(errors, "address.street", REQUIRED_FIELD);
+			ValidationUtils.rejectIfEmpty(errors, "address.state", REQUIRED_FIELD);
+			ValidationUtils.rejectIfEmpty(errors, "address.city", REQUIRED_FIELD);
+			ValidationUtils.rejectIfEmpty(errors, "address.zipCode", REQUIRED_FIELD);
+			ValidationUtils.rejectIfEmpty(errors, "cpf", REQUIRED_FIELD);
 			
 		}
 		
@@ -36,5 +37,4 @@ public class UserValidator implements Validator {
 			errors.reject("err.required.fields");
 		}
 	}
-
 }

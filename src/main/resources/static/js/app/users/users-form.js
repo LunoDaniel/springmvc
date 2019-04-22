@@ -44,6 +44,10 @@ var response = function(data){
 	return data.then(callBackJsonResponse).catch(callBackError);
 }
 
+var unMaskFields = function(){
+	$('.cpf').unmask();
+}
+
 $(document).ready(function(){
 	
 	response(fetch(apiUrlStates)).then(stateCallBack);
@@ -53,5 +57,9 @@ $(document).ready(function(){
 		let urlCity = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
 		response(fetch(urlCity)).then(cityCallBack);
 	});
+	
+	$('.cpf').mask('000.000.000-00');
+	
+	$('.form').on('submit', unMaskFields);
 	
 });

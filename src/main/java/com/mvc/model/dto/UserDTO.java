@@ -1,15 +1,14 @@
 package com.mvc.model.dto;
 
-import com.mvc.model.Address;
-
 public class UserDTO {
 	
 	private Long id;
 	private String email;
 	private String name;
 	private String password;
-	private Address address;
+	private AddressDTO address;
 	private Boolean checked;
+	private String cpf;
 
 	public Long getId() {
 		return id;
@@ -27,11 +26,11 @@ public class UserDTO {
 		this.email = email;
 	}
 	
-	public Address getAddress() {
+	public AddressDTO getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(AddressDTO address) {
 		this.address = address;
 	}
 
@@ -57,5 +56,13 @@ public class UserDTO {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 }
