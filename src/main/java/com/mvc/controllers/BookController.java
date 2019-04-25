@@ -27,8 +27,8 @@ public class BookController {
 	@Autowired private AuthorService authorService;
 	@Autowired private BookValidator validator;
 	
-	private static final String PATH = "/books/form";
-	private static final String LIST = "/books/list";
+	private static final String PATH = "/books/books-form";
+	private static final String LIST = "/books/books-list";
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
 	

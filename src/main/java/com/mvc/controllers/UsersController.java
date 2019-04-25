@@ -26,8 +26,8 @@ public class UsersController {
 	@Autowired private UserValidator validator;
 	@Autowired private UsersService service;
 	
-	private static final String PATH = "/users/form";
-	private static final String LIST = "/users/list";
+	private static final String PATH = "/users/users-form";
+	private static final String LIST = "/users/users-list";
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
 	private static final String CPF_INVALID = "cpfInvalid";
