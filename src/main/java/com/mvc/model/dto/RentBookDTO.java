@@ -1,10 +1,12 @@
 package com.mvc.model.dto;
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.List;
 
-public class RentBookDTO {
-
+public class RentBookDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private Long id;
 	private List<BookDTO> books;
 	private LocalTime rentalDate;

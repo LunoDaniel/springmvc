@@ -60,12 +60,12 @@
 				<div class="form-group col-md-8">
 					<div th:classappend="${#fields.hasErrors('authors')} ? text-danger">
 						<label for="inputAuthors" th:text="#{lbl.book.authors}"></label>
-						<select id="inputAuthors" class="form-control" multiple="multiple" 
+						<select id="inputAuthors" class="form-control" multiple data-live-search="true" 
 							th:field="*{authors}"
 							th:classappend="${#fields.hasErrors('authors')} ? is-invalid" >
 							
-							<option th:each="author : ${authorsList}" th:field="*${authors}" 
-								th:id="{author.id}" th:value="${{author}}" th:text="${author.name}">...</option>
+							<option th:each="author : ${authorsList}" th:field="*{authors}" 
+								th:id="${author.id}" th:value="${{author}}" th:text="${author.name}">...</option>
 						</select>
 						<p th:each="err : ${#fields.errors('authors')}"
 							th:text="#{err.required}"></p>
@@ -74,16 +74,15 @@
 				<div class="form-group col-md-4">
 					<div th:classappend="${#fields.hasErrors('quantity')} ? text-danger">
 						<label for="inputQuantity" th:text="#{lbl.book.quantity}"></label> 
-						<input type="number" class="form-control" th:field="*{address.street}"
+						<input type="number" class="form-control" th:field="*{quantity}"
 							id="inputQuantity" th:classappend="${#fields.hasErrors('quantity')} ? is-invalid">
 						<p th:each="err : ${#fields.errors('quantity')}"
 							th:text="#{err.required}"></p>
 					</div>
 				</div>
 			</div>
-			
 			<div class="form-row">
-				<div class="form-group">
+				<div class="form-group col-md-12">
 					<div th:classappend="${#fields.hasErrors('resume')} ? text-danger">
 						<label for="inputResume" th:text="#{lbl.book.resume}"></label> 
 						<textarea class="form-control" th:field="*{resume}"
