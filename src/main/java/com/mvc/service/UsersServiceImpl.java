@@ -22,19 +22,19 @@ public class UsersServiceImpl implements UsersService {
 	
 	@Override
 	public UserDTO findUserById(Long id) {
-		return converter.convert(repository.getOne(id));
+		return converter.convertToDTO(repository.getOne(id));
 	}
 	
 	@Override
 	public List<UserDTO> findAllUsers() {
-		return converter.convertTotList(repository.findAll());
+		return converter.convertToListDTO(repository.findAll());
 	}
 	
 	@Override
-		public UserDTO saveUser(UserDTO user) throws BusinessException {
-		User newUser = converter.convert(user, User.class);
+	public UserDTO saveUser(UserDTO user) throws BusinessException {
+		User newUser = converter.convertToModel(user, User.class);
 		try {
-			return converter.convert(repository.save(newUser));
+			return converter.convertToDTO(repository.save(newUser));
 		} catch (ConstraintViolationException e) {
 			throw new CpfException();
 		}
