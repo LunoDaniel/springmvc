@@ -6,18 +6,18 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class BookDTO implements Serializable {
+public class BookFTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
 	private String title;
-	private List<AuthorDTO> authors;
+	private List<Long> authors;
 	private String image;
 	private Date releaseDate;
 	private String resume;
 	private Boolean rented = false;
-    private Integer quantity;
-    
+	private Integer quantity;
+
 	public Long getId() {
 		return id;
 	}
@@ -34,11 +34,11 @@ public class BookDTO implements Serializable {
 		this.title = title;
 	}
 
-	public List<AuthorDTO> getAuthors() {
+	public List<Long> getAuthors() {
 		return authors;
 	}
 
-	public void setAuthors(List<AuthorDTO> authors) {
+	public void setAuthors(List<Long> authors) {
 		this.authors = authors;
 	}
 
@@ -50,15 +50,6 @@ public class BookDTO implements Serializable {
 		this.image = image;
 	}
 
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	public Date getReleaseDate() {
-		return releaseDate;
-	}
-
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
 	public String getResume() {
 		return resume;
 	}
@@ -67,6 +58,15 @@ public class BookDTO implements Serializable {
 		this.resume = resume;
 	}
 	
+	@DateTimeFormat(pattern="dd/MM/yyyy") 
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
 	public Boolean getRented() {
 		return rented;
 	}

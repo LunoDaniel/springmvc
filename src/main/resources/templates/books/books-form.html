@@ -7,6 +7,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link th:href="@{/css/app.css}" rel="stylesheet">
 	<title>Books</title>
 </head>
 <body>
@@ -48,12 +49,17 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div th:classappend="${#fields.hasErrors('date')} ? text-danger">
+				<div th:classappend="${#fields.hasErrors('releaseDate')} ? text-danger" class="date">
 					<label for="inputDate" th:text="#{lbl.book.date}"></label> 
-					<input type="datetime-local" class="form-control" th:field="*{date}"
-						id="inputDate" th:classappend="${#fields.hasErrors('date')} ? is-invalid">
-					<p th:each="err : ${#fields.errors('date')}"
-						th:text="#{err.required}"></p>
+					<div class="input-group date" id="inputDate" data-target-input="nearest">
+		                <input type="text" class="form-control datetimepicker-input" data-target="#inputDate"  
+		                	th:field="*{releaseDate}" th:value="*{releaseDate}"
+							th:classappend="${#fields.hasErrors('releaseDate')} ? is-invalid">
+						<p th:each="err : ${#fields.errors('releaseDate')}" th:text="#{err.required}"></p>
+		                <div class="input-group-append" data-target="#inputDate" data-toggle="datetimepicker">
+		                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+		                </div>
+		            </div>
 				</div>
 			</div>
 			<div class="form-row">
@@ -61,11 +67,10 @@
 					<div th:classappend="${#fields.hasErrors('authors')} ? text-danger">
 						<label for="inputAuthors" th:text="#{lbl.book.authors}"></label>
 						<select id="inputAuthors" class="form-control" multiple data-live-search="true" 
-							th:field="*{authors}"
-							th:classappend="${#fields.hasErrors('authors')} ? is-invalid" >
+							th:classappend="${#fields.hasErrors('authors')} ? is-invalid" th:field="*{authors}" >
 							
 							<option th:each="author : ${authorsList}" th:field="*{authors}" 
-								th:id="${author.id}" th:value="${{author}}" th:text="${author.name}">...</option>
+								th:id="${author.id}"  th:value="${{author}}" th:text="${author.name}">...</option>
 						</select>
 						<p th:each="err : ${#fields.errors('authors')}"
 							th:text="#{err.required}"></p>

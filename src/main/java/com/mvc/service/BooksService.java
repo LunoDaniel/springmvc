@@ -6,11 +6,12 @@ import javax.validation.Valid;
 
 import com.mvc.exceptions.BusinessException;
 import com.mvc.model.dto.BookDTO;
+import com.mvc.model.dto.BookFTO;
 
 public interface BooksService {
 
 	public BookDTO findUserById(Long id);
-	public List<BookDTO> findAllUsers();
-	public BookDTO saveBook(@Valid BookDTO user) throws BusinessException;
+	public List<BookDTO> findAllBooks();
+	public BookDTO saveBook(@Valid BookFTO user) throws BusinessException;
 
 }

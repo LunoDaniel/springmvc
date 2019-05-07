@@ -20,4 +20,11 @@ public class AuthorServiceImpl implements AuthorService {
 		return converter.convertToListDTO(repository.findAll());
 	}
 
+	@Override
+	public AuthorDTO getAuthorById(Long id) {
+		return converter.convertToDTO(repository.getOne(id));
+	}
+	
+	
+
 }

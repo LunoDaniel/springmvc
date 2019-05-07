@@ -4,14 +4,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
-import com.mvc.model.dto.BookDTO;
+import com.mvc.model.dto.BookFTO;
 
 @Component
 public class BookValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		return BookDTO.class.equals(clazz);
+		return BookFTO.class.equals(clazz);
 	}
 
 	@Override

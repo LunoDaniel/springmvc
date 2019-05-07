@@ -11,6 +11,7 @@ import com.mvc.converter.BookConverter;
 import com.mvc.exceptions.BusinessException;
 import com.mvc.model.Book;
 import com.mvc.model.dto.BookDTO;
+import com.mvc.model.dto.BookFTO;
 import com.mvc.repository.BooksRepository;
 
 @Service
@@ -25,12 +26,12 @@ public class BooksServiceImpl implements BooksService {
 	}
 
 	@Override
-	public List<BookDTO> findAllUsers() {
+	public List<BookDTO> findAllBooks() {
 		return converter.convertToListDTO(repository.findAll());
 	}
 
 	@Override
-	public BookDTO saveBook(@Valid BookDTO book) throws BusinessException {
+	public BookDTO saveBook(@Valid BookFTO book) throws BusinessException {
 		Book newBook = new Book();
 		newBook = converter.convertToModel(book);
 		return converter.convertToDTO(repository.save(newBook));

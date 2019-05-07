@@ -12,6 +12,7 @@ public class UserValidator implements Validator {
 
 	private UserDTO user = new UserDTO();
 	private static final String REQUIRED_FIELD= "err.required";
+	
 	@Override
 	public boolean supports(Class<?> clazz) {
 		return UserDTO.class.equals(clazz);

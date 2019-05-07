@@ -1,3 +1,12 @@
 .pading-bottom {
 	padding-bottom: 1%;
 }
+
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active{
+	border-color: #ced4da !important;
+	background-color: white !important
+}
+.bootstrap-select > .dropdown-toggle {
+	border-color: #ced4da !important;
+	background-color: white !important;
+}

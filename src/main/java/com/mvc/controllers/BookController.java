@@ -1,8 +1,12 @@
 package com.mvc.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mvc.exceptions.BusinessException;
-import com.mvc.model.dto.BookDTO;
+import com.mvc.model.dto.BookFTO;
 import com.mvc.service.AuthorService;
 import com.mvc.service.BooksService;
 import com.mvc.validator.BookValidator;
@@ -31,9 +35,16 @@ public class BookController {
 	private static final String LIST = "/books/books-list";
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
+	private static final String DEFAULT_DATE_FORMAT = "dd/MM/yyyy";
+
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat(DEFAULT_DATE_FORMAT);
+	    CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
+	    binder.registerCustomEditor(Date.class, editor);
+	    
 		binder.addValidators(validator);
 	}
 	
@@ -46,15 +57,16 @@ public class BookController {
 	
 	@RequestMapping("/list")
 	public ModelAndView listBook(Model model) {
-		model.addAttribute("books", null);
+		emptyModelObject(model);
 		return new ModelAndView(LIST);
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public ModelAndView saveBook(@ModelAttribute("book") @Valid BookDTO book,
+	public ModelAndView saveBook(@ModelAttribute("book") @Valid BookFTO book,
 			BindingResult result, Model model) throws BusinessException {
 		
 		if(result.hasErrors()) {
+			model.addAttribute("authorsList", authorService.listAllAuthors());
 			return new ModelAndView(PATH);
 		}
 		
@@ -71,7 +83,7 @@ public class BookController {
 	
 
 	private void emptyModelObject(Model model) {
-		model.addAttribute("book", new BookDTO());
+		model.addAttribute("book", new BookFTO());
 		model.addAttribute("authorsList", authorService.listAllAuthors());
 	}
 }
