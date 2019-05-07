@@ -1,20 +1,3 @@
-@font-face {
-    font-family: "solid";
-    src: url("vendors/fonts/fa-solid-900.woff") format('woff');
-}
-
-@font-face {
-    font-family: "solid-2";
-    src: url("vendors/fonts/fa-solid-900.woff2") format('woff');
-    font-weight: bold;
-}
-
-@font-face {
-    font-family: "solid-3";
-    src: url("vendors/fonts/fa-solid-900.ttf) format('ttf');
-    font-weight: bold;
-    font-style: italic;
-}
 
 .pading-bottom {
 	padding-bottom: 1%;

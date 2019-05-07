@@ -55,11 +55,11 @@
 		                <input type="text" class="form-control datetimepicker-input" data-target="#inputDate"  
 		                	th:field="*{releaseDate}" th:value="*{releaseDate}"
 							th:classappend="${#fields.hasErrors('releaseDate')} ? is-invalid">
-						<p th:each="err : ${#fields.errors('releaseDate')}" th:text="#{err.required}"></p>
 		                <div class="input-group-append" data-target="#inputDate" data-toggle="datetimepicker">
 		                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 		                </div>
 		            </div>
+		            <p th:each="err : ${#fields.errors('releaseDate')}" th:text="#{err.required}"></p>
 				</div>
 			</div>
 			<div class="form-row">

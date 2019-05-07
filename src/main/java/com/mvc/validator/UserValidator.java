@@ -8,10 +8,9 @@ import org.springframework.validation.Validator;
 import com.mvc.model.dto.UserDTO;
 
 @Component
-public class UserValidator implements Validator {
+public class UserValidator extends BaseValidator implements Validator  {
 
 	private UserDTO user = new UserDTO();
-	private static final String REQUIRED_FIELD= "err.required";
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
