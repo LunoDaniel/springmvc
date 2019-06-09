@@ -31,7 +31,7 @@ public class BookController {
 	@Autowired private AuthorService authorService;
 	@Autowired private BookValidator validator;
 	
-	private static final String PATH = "/books/books-form";
+	private static final String FORM = "/books/books-form";
 	private static final String LIST = "/books/books-list";
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
@@ -52,12 +52,11 @@ public class BookController {
 	public ModelAndView viewBook(Model model) {
 		emptyModelObject(model);
 		model.addAttribute(SUCCESS, false);
-		return new ModelAndView(PATH);
+		return new ModelAndView(FORM);
 	}
 	
 	@RequestMapping("/list")
 	public ModelAndView listBook(Model model) {
-		emptyModelObject(model);
 		return new ModelAndView(LIST);
 	}
 	
@@ -67,7 +66,7 @@ public class BookController {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("authorsList", authorService.listAllAuthors());
-			return new ModelAndView(PATH);
+			return new ModelAndView(FORM);
 		}
 		
 		try {
@@ -78,7 +77,7 @@ public class BookController {
 			model.addAttribute(ERROR, true);
 		}
 		
-		return new ModelAndView(PATH);
+		return new ModelAndView(FORM);
 	} 
 	
 
