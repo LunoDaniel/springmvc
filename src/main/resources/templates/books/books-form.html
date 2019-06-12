@@ -42,6 +42,7 @@
 					<div th:classappend="${#fields.hasErrors('image')} ? text-danger">
 						<label for="inputImage" th:text="#{lbl.book.image}"></label> 
 						<input type="text" class="form-control" th:field="*{image}"
+							placeholder="Image link"
 							id="inputImage" th:classappend="${#fields.hasErrors('image')} ? is-invalid" >
 						<p th:each="err : ${#fields.errors('image')}"
 							 th:text="#{err.required}"></p>
@@ -66,7 +67,7 @@
 				<div class="form-group col-md-8">
 					<div th:classappend="${#fields.hasErrors('authors')} ? text-danger">
 						<label for="inputAuthors" th:text="#{lbl.book.authors}"></label>
-						<select id="inputAuthors" class="form-control" multiple data-live-search="true" 
+						<select id="inputAuthors" class="form-control mult-dropdown" multiple data-live-search="true" 
 							th:classappend="${#fields.hasErrors('authors')} ? is-invalid" th:field="*{authors}" >
 							
 							<option th:each="author : ${authorsList}" th:field="*{authors}" 

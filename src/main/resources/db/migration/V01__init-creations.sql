@@ -1,11 +1,12 @@
 CREATE TABLE user (
   id INT AUTO_INCREMENT PRIMARY KEY,
   email VARCHAR(58),
+  password VARCHAR(58),
   name VARCHAR(255),
   street VARCHAR(255),
   state VARCHAR(128),
   city VARCHAR(255),
-  zipCode VARCHAR(12),
+  zip_code VARCHAR(12),
   checked BOOLEAN,
   cpf VARCHAR(12) 
 );
@@ -17,7 +18,7 @@ CREATE TABLE author (
 
 CREATE TABLE book (
   id INT AUTO_INCREMENT PRIMARY KEY,
-	title VARCHAR(255),
+  title VARCHAR(255),
   image VARCHAR(255),
   release_date DATE, 
   resume BLOB,
