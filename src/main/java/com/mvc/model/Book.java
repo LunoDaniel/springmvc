@@ -18,6 +18,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 public class Book {
 
@@ -49,6 +52,9 @@ public class Book {
 		this.title = title;
 	}
 
+	@JsonIdentityInfo(
+		      generator = ObjectIdGenerators.PropertyGenerator.class, 
+		      property = "id")
 	@ManyToMany(targetEntity = Author.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinTable(name = "book_author", joinColumns = 
 		@JoinColumn(name = "book_id", referencedColumnName = "id"), 
