@@ -1,4 +1,4 @@
-package com.mvc.controllers;
+package com.mvc.resources;
 
 import java.util.List;
 
@@ -7,10 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mvc.model.dto.BookDTO;
+import com.mvc.resources.api.BookResourceApi;
 import com.mvc.service.BooksService;
 
 @RestController
-public class BookResource implements ResourceApi {
+public class BookResource implements BookResourceApi {
 	
 	@Autowired private BooksService bookService;
 

@@ -52,9 +52,7 @@ public class Book {
 		this.title = title;
 	}
 
-	@JsonIdentityInfo(
-		      generator = ObjectIdGenerators.PropertyGenerator.class, 
-		      property = "id")
+	@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 	@ManyToMany(targetEntity = Author.class, cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinTable(name = "book_author", joinColumns = 
 		@JoinColumn(name = "book_id", referencedColumnName = "id"), 

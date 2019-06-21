@@ -11,3 +11,7 @@
 	border-color: #ced4da !important;
 	background-color: white !important;
 }
+.title{
+	padding: 20px 20px 20px 20px;
+ 	border: 1px solid rgba(0,0,0,.125);
+}

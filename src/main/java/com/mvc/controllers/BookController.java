@@ -57,6 +57,7 @@ public class BookController {
 	
 	@RequestMapping("/list")
 	public ModelAndView listBook(Model model) {
+		model.addAttribute("books", service.findAllBooks());
 		return new ModelAndView(LIST);
 	}
 	

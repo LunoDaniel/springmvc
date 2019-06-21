@@ -13,7 +13,7 @@
 <body>
 	<div class="container" layout:fragment="content-form">
 		<div class="row"><br></div>
-		<h4 th:text="#{lbl.book.form.title}"></h4>
+		<div th:replace="~{fragments/general.html::title(msg=#{lbl.book.form.title})}"></div>
 		<form class="form" th:action="@{/books/save}" th:object="${book}" method="post">
 			<div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
 			  <strong th:text="#{msg.success}"></strong> <span th:text="#{msg.save.success}"></span>
