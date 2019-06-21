@@ -1,5 +1,7 @@
 package com.mvc.resources;
 
+import static org.springframework.util.ObjectUtils.isEmpty;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,13 @@ public class BookResource implements BookResourceApi {
 
 	@Override
 	public ResponseEntity<List<BookDTO>> listOfBooks() {
-		return ResponseEntity.ok(bookService.findAllBooks());
+		List<BookDTO> books = bookService.findAllBooks();
+		
+		if(isEmpty(books) || books.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+		
+		return ResponseEntity.ok(books);
 	}
 
 }
