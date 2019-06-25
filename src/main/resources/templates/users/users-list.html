@@ -38,4 +38,42 @@
 		<script th:src="@{/js/app/users/users-list.js}"></script>
 	</th:block>
 </body>
+<!DOCTYPE html>
+<html lang="en" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  	layout:decorate="~{layout-list}">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link th:href="@{/css/app.css}" rel="stylesheet">
+	<title th:text="#{lbl.user.list}"></title>
+</head>
+<body>
+	<div class="container" layout:fragment="content-list">
+		<div class="row"><br></div>
+		<h4 th:text="#{lbl.user.list}"></h4>
+		
+		<table class="table table-borderedless table-hover users-list">
+			<thead>
+				<th th:text="#{lbl.name}"></th>
+				<th th:text="#{lbl.email}"></th>
+				<th th:text="#{lbl.address}"></th>
+				<th th:text="#{lbl.city}"></th>
+			</thead>
+			<tbody>
+				<tr th:each="item : ${users}">
+					<td th:text="${item.name}"></td>
+					<td th:text="${item.email}"></td>
+					<td th:text="${item.address.street}"></td>
+					<td th:text="${item.address.city +'/' + item.address.state}"></td> 
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<th:block layout:fragment="script">
+		<script th:src="@{/js/app/users/users-list.js}"></script>
+	</th:block>
+</body>
 </html>
