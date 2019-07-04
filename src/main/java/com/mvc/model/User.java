@@ -1,11 +1,14 @@
 package com.mvc.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -21,6 +24,7 @@ public class User {
 	private Address address;
 	private Boolean checked;
 	private String cpf;
+	private List<RentBook> rents;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -88,6 +92,15 @@ public class User {
 
 	public void setChecked(Boolean checked) {
 		this.checked = checked;
+	}
+
+	@OneToMany(mappedBy = "user", targetEntity = RentBook.class)
+	public List<RentBook> getRents() {
+		return rents;
+	}
+
+	public void setRents(List<RentBook> rents) {
+		this.rents = rents;
 	}
 
 	@Override

@@ -8,7 +8,13 @@ import static java.util.Calendar.YEAR;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.mvc.repository.DateRepository;
+
 public class DateUtils {
+
+	@Autowired DateRepository dates;
 	
 	DateUtils(){}
 	

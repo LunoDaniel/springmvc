@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 
 public class BookDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -16,7 +17,8 @@ public class BookDTO implements Serializable {
 	private Date releaseDate;
 	private String resume;
 	private Boolean rented = false;
-    private Integer quantity;
+	private Double unitPrice;
+	private Integer stockQuantity;
     
 	public Long getId() {
 		return id;
@@ -75,12 +77,21 @@ public class BookDTO implements Serializable {
 		this.rented = rented;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
+	@NumberFormat(pattern = "#.00")
+	public Double getUnitPrice() {
+		return unitPrice;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public Integer getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(Integer stockQuantity) {
+		this.stockQuantity = stockQuantity;
 	}
 
 }

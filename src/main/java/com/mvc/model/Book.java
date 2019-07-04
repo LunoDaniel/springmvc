@@ -31,7 +31,8 @@ public class Book {
 	private Date releaseDate;
 	private String resume;
 	private Boolean rented = false;
-	private Integer quantity;
+	private Double unitPrice;
+	private Integer stockQuantity;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,13 +106,22 @@ public class Book {
 		this.resume = resume;
 	}
 
-	@Column(name="quantity")
-	public Integer getQuantity() {
-		return quantity;
+	@Column(name = "unit_price")
+	public Double getUnitPrice() {
+		return unitPrice;
 	}
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
+	public void setUnitPrice(Double unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	@Column(name = "stock_quantity")
+	public Integer getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setStockQuantity(Integer stockQuantity) {
+		this.stockQuantity = stockQuantity;
 	}
 
 	@Override

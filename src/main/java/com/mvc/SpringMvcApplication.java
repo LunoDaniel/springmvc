@@ -20,5 +20,4 @@ public class SpringMvcApplication {
 	public ModelMapper modelMapper() {
 	    return new ModelMapper();
 	}
-
 }

@@ -1,6 +1,6 @@
 package com.mvc.model;
 
-import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -8,15 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class RentBook {
 
 	private Long id;
 	private List<Book> books;
-	private LocalTime rentalDate;
-	private LocalTime returnDate;
-	private Double value;
+	private Date rentalDate;
+	private Date returnDate;
+	private Double totalRentValue;
+	private User user;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,28 +39,37 @@ public class RentBook {
 		this.books = books;
 	}
 
-	public LocalTime getRentalDate() {
+	public Date getRentalDate() {
 		return rentalDate;
 	}
 
-	public void setRentalDate(LocalTime rentalDate) {
+	public void setRentalDate(Date rentalDate) {
 		this.rentalDate = rentalDate;
 	}
 
-	public LocalTime getReturnDate() {
+	public Date getReturnDate() {
 		return returnDate;
 	}
 
-	public void setReturnDate(LocalTime returnDate) {
+	public void setReturnDate(Date returnDate) {
 		this.returnDate = returnDate;
 	}
 
-	public Double getValue() {
-		return value;
+	public Double getTotalRentValue() {
+		return totalRentValue;
 	}
 
-	public void setValue(Double value) {
-		this.value = value;
+	public void setTotalRentValue(Double totalRentValue) {
+		this.totalRentValue = totalRentValue;
+	}
+
+	@ManyToOne(targetEntity = User.class)
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
