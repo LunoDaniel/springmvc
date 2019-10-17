@@ -1,11 +1,11 @@
-package com.mvc.repository;
+package com.mvc.model.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.mvc.model.Book;
+import com.mvc.model.User;
 
 @Repository
-public interface BooksRepository extends JpaRepository<Book, Long>{
+public interface UsersRepository extends JpaRepository<User, Long>{
 
 }

@@ -1,20 +1,23 @@
 package com.mvc.model;
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.io.Serializable;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
-public class GEntity {
-
-	private Long id;
-
+@Getter @Setter
+public class GEntity implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
+	@GeneratedValue(strategy = IDENTITY)
+	private Long id;
 
 }

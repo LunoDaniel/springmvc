@@ -7,34 +7,34 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mvc.converter.UserConverter;
+import com.mvc.converter.UserMapper;
 import com.mvc.exceptions.BusinessException;
 import com.mvc.exceptions.CpfException;
 import com.mvc.model.User;
 import com.mvc.model.dto.UserDTO;
-import com.mvc.repository.UsersRepository;
+import com.mvc.model.repository.UsersRepository;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 	
 	@Autowired private UsersRepository repository;
-	@Autowired private UserConverter converter;
+	@Autowired private UserMapper converter;
 	
 	@Override
 	public UserDTO findUserById(Long id) {
-		return converter.convertToDTO(repository.getOne(id));
+		return converter.toUserDto(repository.getOne(id));
 	}
 	
 	@Override
 	public List<UserDTO> findAllUsers() {
-		return converter.convertToListDTO(repository.findAll());
+		return converter.toUserDto(repository.findAll());
 	}
 	
 	@Override
 	public UserDTO saveUser(UserDTO user) throws BusinessException {
-		User newUser = converter.convertToModel(user, User.class);
+		User newUser = converter.toUser(user);
 		try {
-			return converter.convertToDTO(repository.save(newUser));
+			return converter.toUserDto(repository.save(newUser));
 		} catch (ConstraintViolationException e) {
 			throw new CpfException();
 		}

@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class BookFTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -13,74 +17,12 @@ public class BookFTO implements Serializable {
 	private String title;
 	private List<Long> authors;
 	private String image;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date releaseDate;
+	
 	private String resume;
 	private Boolean rented = false;
 	private Integer quantity;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public List<Long> getAuthors() {
-		return authors;
-	}
-
-	public void setAuthors(List<Long> authors) {
-		this.authors = authors;
-	}
-
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
-
-	public String getResume() {
-		return resume;
-	}
-
-	public void setResume(String resume) {
-		this.resume = resume;
-	}
-	
-	@DateTimeFormat(pattern="dd/MM/yyyy") 
-	public Date getReleaseDate() {
-		return releaseDate;
-	}
-
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
-	}
-
-	public Boolean getRented() {
-		return rented;
-	}
-
-	public void setRented(Boolean rented) {
-		this.rented = rented;
-	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
 
 }

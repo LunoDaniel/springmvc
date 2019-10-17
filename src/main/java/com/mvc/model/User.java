@@ -5,126 +5,39 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.br.CPF;
 
-@Entity
-public class User {
+import groovy.transform.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
-	private Long id;
+@Entity
+@Getter @Setter
+@EqualsAndHashCode
+public class User extends GEntity{
+	private static final long serialVersionUID = 1L;
+	
+	@Email
+	@Column
 	private String email;
+	
 	private String name;
 	private String password;
-	private Address address;
-	private Boolean checked;
-	private String cpf;
-	private List<RentBook> rents;
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
+	@Embedded
+	private Address address;
+	
+	private Boolean checked;
+	
 	@CPF
 	@NotEmpty
 	@Column(name="cpf")
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	@Email
-	@Column
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+	private String cpf;
 	
-	@Column
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	@Column
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	@Column
-	@Embedded
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-	@Column
-	public Boolean getChecked() {
-		return checked;
-	}
-
-	public void setChecked(Boolean checked) {
-		this.checked = checked;
-	}
-
 	@OneToMany(mappedBy = "user", targetEntity = RentBook.class)
-	public List<RentBook> getRents() {
-		return rents;
-	}
-
-	public void setRents(List<RentBook> rents) {
-		this.rents = rents;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
+	private List<RentBook> rents;
 }

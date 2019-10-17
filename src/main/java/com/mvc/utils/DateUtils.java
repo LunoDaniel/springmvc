@@ -10,7 +10,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.mvc.repository.DateRepository;
+import com.mvc.model.repository.DateRepository;
 
 public class DateUtils {
 

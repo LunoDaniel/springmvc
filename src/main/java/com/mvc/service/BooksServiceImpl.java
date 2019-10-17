@@ -7,34 +7,34 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mvc.converter.BookConverter;
+import com.mvc.converter.BookMapper;
 import com.mvc.exceptions.BusinessException;
 import com.mvc.model.Book;
 import com.mvc.model.dto.BookDTO;
 import com.mvc.model.dto.BookFTO;
-import com.mvc.repository.BooksRepository;
+import com.mvc.model.repository.BooksRepository;
 
 @Service
 public class BooksServiceImpl implements BooksService {
 	
 	@Autowired private BooksRepository repository;
-	@Autowired private BookConverter converter;
+	@Autowired private BookMapper converter;
 
 	@Override
 	public BookDTO findUserById(Long id) {
-		return converter.convertToDTO(repository.getOne(id), BookDTO.class);
+		return converter.toBookDto(repository.getOne(id));
 	}
 
 	@Override
 	public List<BookDTO> findAllBooks() {
-		return converter.convertToListDTO(repository.findAll());
+		return converter.toBookDto(repository.findAll());
 	}
 
 	@Override
 	public BookDTO saveBook(@Valid BookFTO book) throws BusinessException {
 		Book newBook = new Book();
-		newBook = converter.convertToModel(book);
-		return converter.convertToDTO(repository.save(newBook));
+		newBook = converter.ftoToBook(book);
+		return converter.toBookDto(repository.save(newBook));
 	}
 
 }

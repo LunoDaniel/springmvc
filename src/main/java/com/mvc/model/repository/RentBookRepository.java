@@ -1,4 +1,4 @@
-package com.mvc.repository;
+package com.mvc.model.repository;
 
 import java.util.List;
 
